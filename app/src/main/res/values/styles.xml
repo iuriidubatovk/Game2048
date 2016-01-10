@@ -1,0 +1,46 @@
+<resources>
+
+    <style name="AppTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <!-- Used for Toolbar background color -->
+        <item name="colorPrimary">#005500</item>
+        <!-- Toolbar + Overflow menu text color -->
+        <item name="android:textColorPrimary">#FFFFFF</item>
+        <!-- Overflow menu button color -->
+        <item name="android:textColorSecondary">#FFFFFF</item>
+        <item name="actionOverflowButtonStyle">@style/ActionButtonOverflow</item>
+        <item name="android:actionButtonStyle">@style/ActionButtonStyle</item>
+        <item name="actionOverflowMenuStyle">@style/OverflowMenu</item>
+
+    </style>
+
+    <style name="AppTheme.Toolbar" parent="Widget.AppCompat.Toolbar">
+        <item name="android:background">?attr/colorPrimary</item>
+        <item name="android:minHeight">?attr/actionBarSize</item>
+        <item name="popupTheme">@style/AppTheme.ActionBar.Popup</item>
+
+    </style>
+
+    <!-- Overflow drop down style -->
+    <style name="AppTheme.ActionBar.Popup" parent="@style/Widget.AppCompat.Light.PopupMenu.Overflow">
+        <item name="android:background">#cf2323</item>
+
+    </style>
+
+    <style name="ActionButtonOverflow" parent="@style/Widget.AppCompat.Light.ActionButton.Overflow">
+        <item name="android:src">@drawable/ic_settings_white_24dp</item>
+
+    </style>
+
+    <style name="ActionButtonStyle" parent="@android:style/Widget.Holo.Light.ActionButton">
+        <item name="android:minWidth">80dp</item>
+
+    </style>
+
+    <style name="OverflowMenu" parent="Widget.AppCompat.PopupMenu.Overflow">
+        <item name="android:dropDownVerticalOffset">53dp</item>
+
+    </style>
+
+
+
+</resources>

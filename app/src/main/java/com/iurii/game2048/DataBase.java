@@ -1,0 +1,104 @@
+package com.iurii.game2048;
+
+
+import android.content.Context;
+import android.content.SharedPreferences;
+
+import com.google.gson.Gson;
+
+public class DataBase {
+
+    private Presenter presenter;
+    private Context context;
+    private final String PREFS_NAME = "AOP_PREFS";
+    private final String SAVED_TILES = "saved_tiles";
+    private final String SAVED_COUNT = "saved_count";
+    private final String SAVED_RECORD = "saved_record";
+
+    private String firsDownApplication = "[{\"coordinate\":{\"col\":0,\"row\":0},\"isLoadAnimation\":true,\"value\":4}," +
+                                  "{\"coordinate\":{\"col\":1,\"row\":0},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":2,\"row\":0},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":3,\"row\":0},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":0,\"row\":1},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":1,\"row\":1},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":2,\"row\":1},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":3,\"row\":1},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":0,\"row\":2},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":1,\"row\":2},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":2,\"row\":2},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":3,\"row\":2},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":0,\"row\":3},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":1,\"row\":3},\"isLoadAnimation\":true,\"value\":2}," +
+                                  "{\"coordinate\":{\"col\":2,\"row\":3},\"isLoadAnimation\":false,\"value\":0}," +
+                                  "{\"coordinate\":{\"col\":3,\"row\":3},\"isLoadAnimation\":false,\"value\":0}]";
+
+
+    public DataBase(Presenter presenter, Context context) {
+        this.presenter = presenter;
+        this.context = context;
+    }
+
+    //// TODO: 06.01.2016 подумать можно ли уменьшить базу данных например убрать повторяющийся код
+
+    public void saveTiles(Tile[] tiles) {
+        String jsonStr = new Gson().toJson(tiles);
+        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = settings.edit();
+        ed.putString(SAVED_TILES, jsonStr);
+
+        ed.apply();
+    }
+
+    public Tile[] loadTiles() {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        String saveTiles = settings.getString(SAVED_TILES, firsDownApplication);
+
+        return new Gson().fromJson(saveTiles, Tile[].class);
+
+    }
+
+    public void saveCount() {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = settings.edit();
+        ed.putInt(SAVED_COUNT, presenter.getScore());
+        ed.apply();
+    }
+
+    public int loadCount() {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+
+        return settings.getInt(SAVED_COUNT, 0);
+    }
+
+    public int showCount() {
+        saveCount();
+
+        return loadCount();
+    }
+
+    public void saveRecord() {
+        SharedPreferences setting = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = setting.edit();
+        ed.putInt(SAVED_RECORD, presenter.getScore());
+        ed.apply();
+    }
+
+    public int loadRecord() {
+        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+
+        return settings.getInt(SAVED_RECORD, 0);
+    }
+
+    public int getRecord() {
+        int currentScore = presenter.getScore();
+        int recordUser = loadRecord();
+        if (currentScore > recordUser) {
+            saveRecord();
+            loadRecord();
+
+        } else
+            loadRecord();
+
+        return loadRecord();
+    }
+}
