@@ -76,14 +76,14 @@ public class DataBase {
         return loadCount();
     }
 
-    public void saveRecord() {
+    private void saveRecord() {
         SharedPreferences setting = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor ed = setting.edit();
         ed.putInt(SAVED_RECORD, presenter.getScore());
         ed.apply();
     }
 
-    public int loadRecord() {
+    private int loadRecord() {
         SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
 
         return settings.getInt(SAVED_RECORD, 0);
