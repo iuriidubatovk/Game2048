@@ -28,7 +28,7 @@ public class Game {
         throwNewTile();
         throwNewTile();
 
-        saveTiles();
+      //  saveTiles();
     }
 
     public void continueGame() {
@@ -73,7 +73,7 @@ public class Game {
         if (moveIsAuthentic)
             throwNewTile();
 
-        saveTiles();
+        //saveTiles();
     }
 
     public boolean isOver() {

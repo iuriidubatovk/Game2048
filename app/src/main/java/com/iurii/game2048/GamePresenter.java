@@ -16,11 +16,11 @@ public class GamePresenter implements Presenter {
 
     @Override
     public void start() {
-       if (FragmentReload.isReloadGame()) {
+     /*  if (FragmentReload.isReloadGame()) {
            game.startNewGame();
 
-       } else game.continueGame();
-
+       } else game.continueGame();*/
+        game.startNewGame();
         displayGame();
     }
 
