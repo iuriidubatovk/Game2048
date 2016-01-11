@@ -115,7 +115,7 @@ public class UsersFragment extends Fragment implements com.iurii.game2048.View {
         gv.setVerticalSpacing(25);
         gv.setHorizontalSpacing(25);
         gv.setPadding(10, 25, 10, 0);
-        gv.setAdapter(new CustomAdapter(getActivity(), tiles, presenter));
+        gv.setAdapter(new CustomAdapter(getActivity(), tiles));
     }
 
     private void setUpActionBar() {

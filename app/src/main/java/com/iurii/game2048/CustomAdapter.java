@@ -20,13 +20,10 @@ public class CustomAdapter extends BaseAdapter {
 
 
     private static LayoutInflater inflater = null;
-    private Presenter presenter;
 
-    public CustomAdapter(Context context, Tile[] tiles, Presenter presenter) {
-        // TODO Auto-generated constructor stub
+    public CustomAdapter(Context context, Tile[] tiles) {
         this.tiles = tiles;
         this.context = context;
-        this.presenter = presenter;
         inflater = (LayoutInflater) context.
                 getSystemService(Context.LAYOUT_INFLATER_SERVICE);
 
