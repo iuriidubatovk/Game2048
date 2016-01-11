@@ -28,7 +28,7 @@ public class UsersFragment extends Fragment implements com.iurii.game2048.View {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         Board board = new Board();
-        TilesFactory tilesFactory = new AndroidRandomTileFactory();
+        TilesFactory tilesFactory = new RandomTileFactory();
         Game game = new Game(board, tilesFactory);
         Presenter presenter = new GamePresenter(game, board);
         DataBase dataBase = new DataBase(presenter, getActivity());

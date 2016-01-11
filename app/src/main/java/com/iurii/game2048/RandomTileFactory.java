@@ -1,15 +1,17 @@
 package com.iurii.game2048;
 
+
 import java.util.Random;
 
 public class RandomTileFactory implements TilesFactory {
     Random random = new Random();
+    boolean isLoadAnimation = true;
 
     @Override
     public Tile create() {
         int tileValue = createValue();
         Coordinate coordinate = createCoordinate();
-        return new Tile(tileValue, coordinate);
+        return new Tile(tileValue, coordinate, isLoadAnimation);
     }
 
     private int createValue() {
