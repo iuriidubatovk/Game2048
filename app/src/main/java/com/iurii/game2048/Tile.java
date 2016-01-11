@@ -13,8 +13,7 @@ public class Tile {
     }
 
     public Tile(int value, Coordinate coordinate) {
-        this.value = value;
-        this.coordinate = coordinate;
+      this(value,coordinate,false);
     }
 
     public Coordinate getCoordinate() {

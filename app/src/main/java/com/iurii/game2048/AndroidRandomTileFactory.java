@@ -5,7 +5,7 @@ import java.util.Random;
 
 public class AndroidRandomTileFactory implements TilesFactory {
     Random random = new Random();
-    boolean isLoadAnimation = true;
+     boolean isLoadAnimation = true;
 
     @Override
     public Tile create() {
