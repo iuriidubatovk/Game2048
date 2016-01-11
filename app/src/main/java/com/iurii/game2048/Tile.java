@@ -5,7 +5,7 @@ public class Tile {
     private int value;
     private Coordinate coordinate;
     private boolean isLoadAnimation;
-//todo два конструктора
+
     public Tile(int value, Coordinate coordinate, boolean isLoadAnimation) {
         this.value = value;
         this.coordinate = coordinate;
