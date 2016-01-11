@@ -14,7 +14,7 @@ public class NullPresenter implements Presenter {
     }
 
     @Override
-    public int getScore() {
+    public int currentScore() {
         return 0;
     }
 

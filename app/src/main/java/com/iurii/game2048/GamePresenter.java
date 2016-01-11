@@ -36,10 +36,9 @@ public class GamePresenter implements Presenter {
         }
     }
 
-
     @Override
-    public int getScore() {
-        return game.getScore();
+    public int currentScore() {
+        return game.getCurrentScore();
     }
 
     @Override

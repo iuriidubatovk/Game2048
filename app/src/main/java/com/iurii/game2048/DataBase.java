@@ -39,7 +39,7 @@ public class DataBase {
     }
 
     //// TODO: 06.01.2016 подумать можно ли уменьшить базу данных например убрать повторяющийся код
-
+    ///// TODO: 11.01.2016 написать тесты
     public void saveTiles(Tile[] tiles) {
         String jsonStr = new Gson().toJson(tiles);
         SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -52,25 +52,26 @@ public class DataBase {
     public Tile[] loadTiles() {
         SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         String saveTiles = settings.getString(SAVED_TILES, firsDownApplication);
+        Tile[] tiles = new Gson().fromJson(saveTiles, Tile[].class);
 
-        return new Gson().fromJson(saveTiles, Tile[].class);
-
+        return tiles;
     }
 
-    public void saveCount() {
+    private void saveCount() {
         SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor ed = settings.edit();
-        ed.putInt(SAVED_COUNT, presenter.getScore());
+        ed.putInt(SAVED_COUNT, presenter.currentScore());
         ed.apply();
     }
 
     public int loadCount() {
-        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences count = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        int score = count.getInt(SAVED_COUNT, 0);
 
-        return settings.getInt(SAVED_COUNT, 0);
+        return score;
     }
 
-    public int showCount() {
+    public int getSaveCount() {
         saveCount();
 
         return loadCount();
@@ -79,7 +80,7 @@ public class DataBase {
     private void saveRecord() {
         SharedPreferences setting = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
         SharedPreferences.Editor ed = setting.edit();
-        ed.putInt(SAVED_RECORD, presenter.getScore());
+        ed.putInt(SAVED_RECORD, presenter.currentScore());
         ed.apply();
     }
 
@@ -90,7 +91,7 @@ public class DataBase {
     }
 
     public int getRecord() {
-        int currentScore = presenter.getScore();
+        int currentScore = presenter.currentScore();
         int recordUser = loadRecord();
         if (currentScore > recordUser) {
             saveRecord();

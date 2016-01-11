@@ -13,8 +13,7 @@ import android.widget.Toast;
 
 public class FragmentSetting extends Fragment {
     MainActivity mainActivity;
-
-
+    //// TODO: 11.01.2016 подумать подключить отдельный класс или оставить иннер класс + можно ли совместить с sharedPreferenses
     @Override
     public void onAttach(Activity activity) {
         super.onAttach(activity);

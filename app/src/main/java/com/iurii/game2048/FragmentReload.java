@@ -35,7 +35,7 @@ public class FragmentReload extends Fragment implements View.OnClickListener {
 
         return view;
     }
-
+//// TODO: 11.01.2016 нужно ли на этод метод писать тесты
     @Override
     public void onClick(View v) {
         switch (v.getId()) {

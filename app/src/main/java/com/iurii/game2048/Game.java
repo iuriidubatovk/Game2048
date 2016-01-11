@@ -2,13 +2,18 @@ package com.iurii.game2048;
 
 public class Game {
 
-    Board board;
-    TilesFactory tilesFactory;
+    private Board board;
+    private TilesFactory tilesFactory;
     private DataBase dataBase;
     private boolean moveIsAuthentic;
 
     public int getCount() {
-        return dataBase.showCount();
+        return dataBase.getSaveCount();
+    }
+
+    //// TODO: 11.01.2016 написать тест
+    public int getCurrentScore() {
+        return board.getTheAmountOfNumbersCollapsingBoards();
     }
 
     public int getRecord() {
@@ -28,9 +33,10 @@ public class Game {
         throwNewTile();
         throwNewTile();
 
-      //  saveTiles();
+        //  saveTiles();
     }
 
+    //// TODO: 11.01.2016 написать тест
     public void continueGame() {
         setScore();
         setSaveTiles();
@@ -88,23 +94,19 @@ public class Game {
         return !cloneBoard.canThrowNewTile();
     }
 
-    public int getScore() {
-        return board.getTheAmountOfNumbersCollapsingBoards();
-    }
-
     public boolean isMoveIsAuthentic() {
         return moveIsAuthentic;
     }
 
-    public void setScore() {
+    private void setScore() {
         int score = dataBase.loadCount();
         board.setTheAmountOfNumbersCollapsingBoards(score);
     }
 
-    public void setSaveTiles() {
+    private void setSaveTiles() {
         Tile[] tiles = dataBase.loadTiles();
-        for (int i = 0; i < tiles.length; i++) {
-            board.set(tiles[i]);
+        for (Tile tile : tiles) {
+            board.set(tile);
         }
     }
 
