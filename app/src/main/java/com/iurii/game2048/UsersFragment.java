@@ -8,7 +8,6 @@ import android.support.v7.app.ActionBarActivity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.GridView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.os.Vibrator;
@@ -21,7 +20,7 @@ public class UsersFragment extends Fragment implements com.iurii.game2048.View {
     private Presenter presenter;
     private Vibrator vibrator;
 
-    private GridView gv;
+    private NonClickableGridView gv;
     private TextView score, record;
 
     @Override
@@ -46,32 +45,34 @@ public class UsersFragment extends Fragment implements com.iurii.game2048.View {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_with_game, null);
-        view.setOnTouchListener(new OnSwipeTouchListener(getActivity()) {
 
-            @Override
-            public void onSwipeRight() {
-                presenter.processPlayerMove(Move.right);
-            }
+        view.findViewById(R.id.root_layout).setOnTouchListener(
+                new OnSwipeTouchListener(getActivity()) {
+                    @Override
+                    public void onSwipeRight() {
+                        presenter.processPlayerMove(Move.right);
+                    }
 
-            @Override
-            public void onSwipeLeft() {
-                presenter.processPlayerMove(Move.left);
-            }
+                    @Override
+                    public void onSwipeLeft() {
+                        presenter.processPlayerMove(Move.left);
+                    }
 
-            @Override
-            public void onSwipeTop() {
-                presenter.processPlayerMove(Move.up);
-            }
+                    @Override
+                    public void onSwipeTop() {
+                        presenter.processPlayerMove(Move.up);
+                    }
 
-            @Override
-            public void onSwipeBottom() {
-                presenter.processPlayerMove(Move.down);
-            }
-        });
+                    @Override
+                    public void onSwipeBottom() {
+                        presenter.processPlayerMove(Move.down);
+                    }
+                }
+        );
 
         score = (TextView) view.findViewById(R.id.score);
         record = (TextView) view.findViewById(R.id.record);
-        gv = (GridView) view.findViewById(R.id.gridView1);
+        gv = (NonClickableGridView) view.findViewById(R.id.gridView1);
 
         showGame();
 
