@@ -78,21 +78,6 @@ public class UsersFragment extends Fragment implements com.iurii.game2048.View {
         return view;
     }
 
-    public void getVibrator() {
-        vibrator.vibrate(20);
-    }
-
-
-    @Override
-    public void displayBoard(Tile[] tiles) {
-        tuneGridView(tiles);
-    }
-
-    @Override
-    public void setPresenter(Presenter presenter) {
-        this.presenter = presenter;
-    }
-
     @Override
     public void showGame() {
         presenter.start();
@@ -103,12 +88,29 @@ public class UsersFragment extends Fragment implements com.iurii.game2048.View {
         Toast.makeText(getActivity(), " startClosing", Toast.LENGTH_SHORT).show();
     }
 
+    @Override
+    public void displayBoard(Tile[] tiles) {
+        tuneGridView(tiles);
+    }
+
+    @Override
     public void displayRecord() {
         record.setText(String.valueOf(presenter.getRecord()));
     }
 
+    @Override
     public void displayCount() {
         score.setText(String.valueOf(presenter.getCount()));
+    }
+
+    @Override
+    public void setPresenter(Presenter presenter) {
+        this.presenter = presenter;
+    }
+
+    @Override
+    public void getVibrator() {
+        vibrator.vibrate(20);
     }
 
     private void tuneGridView(Tile[] tiles) {

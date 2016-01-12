@@ -8,7 +8,7 @@ public class Game {
     private boolean moveIsAuthentic;
 
     public int getCount() {
-        return dataBase.getSaveCount();
+        return dataBase.loadCount();
     }
 
     //// TODO: 11.01.2016 написать тест
@@ -33,14 +33,14 @@ public class Game {
         throwNewTile();
         throwNewTile();
 
-        //  saveTiles();
+        saveTiles();
+        saveCount();
     }
 
     //// TODO: 11.01.2016 написать тест
     public void continueGame() {
         setScore();
         setSaveTiles();
-
     }
 
     public void throwNewTile() {
@@ -79,7 +79,8 @@ public class Game {
         if (moveIsAuthentic)
             throwNewTile();
 
-        //saveTiles();
+        saveTiles();
+        saveCount();
     }
 
     public boolean isOver() {
@@ -112,5 +113,9 @@ public class Game {
 
     private void saveTiles() {
         dataBase.saveTiles(board.getTiles());
+    }
+
+    private void saveCount() {
+        dataBase.saveCount();
     }
 }

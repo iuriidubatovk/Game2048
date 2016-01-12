@@ -10,8 +10,9 @@ public class RandomTileFactory implements TilesFactory {
     public Tile create() {
         int tileValue = createValue();
         Coordinate coordinate = createCoordinate();
+        boolean isLoadAnimation = true;
 
-        return new Tile(tileValue, coordinate, true);
+        return new Tile(tileValue, coordinate, isLoadAnimation);
     }
 
     private int createValue() {

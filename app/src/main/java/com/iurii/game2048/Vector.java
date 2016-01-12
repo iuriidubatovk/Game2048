@@ -1,14 +1,20 @@
 package com.iurii.game2048;
 
 public class Vector {
-    private int[] elements;
-    public int getScore() {
-        return score;
-    }
 
-    private int score = 0;
+    private int[] elements;
+    private int score;
+
     public Vector(int[] elements) {
         this.elements = elements;
+    }
+
+    public int[] getElements() {
+        return elements;
+    }
+
+    public int getScore() {
+        return score;
     }
 
     public void collapse() {
@@ -27,6 +33,11 @@ public class Vector {
         }
     }
 
+    public void getTheNumberOfTheVectorSumOfCollapsing() {
+        bubbleZeroes();
+        addUpTheNumberOfNeighbors();
+    }
+
     private void compress() {
 
         for (int j = 0; j < elements.length - 1; j++) {
@@ -43,15 +54,8 @@ public class Vector {
         elements[index2] = temp;
     }
 
-    public int[] getElements() {
-        return elements;
-    }
-    public void getTheNumberOfTheVectorSumOfCollapsing(){
-        bubbleZeroes();
-        addUpTheNumberOfNeighbors();
-    }
-
     private void addUpTheNumberOfNeighbors() {
+
         for (int j = 0; j < elements.length - 1; j++) {
             if (elements[j] == elements[j + 1]) {
                 elements[j] = elements[j] + elements[j + 1];

@@ -16,21 +16,21 @@ public class DataBase {
     private final String SAVED_RECORD = "saved_record";
 
     private String firsDownApplication = "[{\"coordinate\":{\"col\":0,\"row\":0},\"isLoadAnimation\":true,\"value\":4}," +
-                                  "{\"coordinate\":{\"col\":1,\"row\":0},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":2,\"row\":0},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":3,\"row\":0},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":0,\"row\":1},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":1,\"row\":1},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":2,\"row\":1},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":3,\"row\":1},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":0,\"row\":2},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":1,\"row\":2},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":2,\"row\":2},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":3,\"row\":2},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":0,\"row\":3},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":1,\"row\":3},\"isLoadAnimation\":true,\"value\":2}," +
-                                  "{\"coordinate\":{\"col\":2,\"row\":3},\"isLoadAnimation\":false,\"value\":0}," +
-                                  "{\"coordinate\":{\"col\":3,\"row\":3},\"isLoadAnimation\":false,\"value\":0}]";
+            "{\"coordinate\":{\"col\":1,\"row\":0},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":2,\"row\":0},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":3,\"row\":0},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":0,\"row\":1},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":1,\"row\":1},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":2,\"row\":1},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":3,\"row\":1},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":0,\"row\":2},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":1,\"row\":2},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":2,\"row\":2},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":3,\"row\":2},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":0,\"row\":3},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":1,\"row\":3},\"isLoadAnimation\":true,\"value\":2}," +
+            "{\"coordinate\":{\"col\":2,\"row\":3},\"isLoadAnimation\":false,\"value\":0}," +
+            "{\"coordinate\":{\"col\":3,\"row\":3},\"isLoadAnimation\":false,\"value\":0}]";
 
 
     public DataBase(Presenter presenter, Context context) {
@@ -57,24 +57,18 @@ public class DataBase {
         return tiles;
     }
 
-    private void saveCount() {
-        SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        SharedPreferences.Editor ed = settings.edit();
+    public void saveCount() {
+        SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        SharedPreferences.Editor ed = preferences.edit();
         ed.putInt(SAVED_COUNT, presenter.currentScore());
         ed.apply();
     }
 
     public int loadCount() {
-        SharedPreferences count = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
-        int score = count.getInt(SAVED_COUNT, 0);
+        SharedPreferences preferences = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
+        int count = preferences.getInt(SAVED_COUNT, 0);
 
-        return score;
-    }
-
-    public int getSaveCount() {
-        saveCount();
-
-        return loadCount();
+        return count;
     }
 
     private void saveRecord() {

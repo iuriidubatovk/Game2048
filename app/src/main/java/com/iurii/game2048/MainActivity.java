@@ -53,7 +53,7 @@ public class MainActivity extends ActionBarActivity {
                                 .commit();
                 return true;
 
-            case R.id.action_favorite:
+            case R.id.action_share:
                 Toast.makeText(this, item + " selected", Toast.LENGTH_SHORT).show();
                 return true;
 
@@ -63,10 +63,8 @@ public class MainActivity extends ActionBarActivity {
                 return true;
 
             default:
-                // If we got here, the user's action was not recognized.
-                // Invoke the superclass to handle it.
-                return super.onOptionsItemSelected(item);
 
+                return super.onOptionsItemSelected(item);
         }
     }
 
