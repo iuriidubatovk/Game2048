@@ -16,7 +16,7 @@ public class GamePresenter implements Presenter {
 
     @Override
     public void start() {
-        if (FragmentReload.isReloadGame()) {
+        if (Reload.isReloadGame()) {
             game.startNewGame();
 
         } else game.continueGame();

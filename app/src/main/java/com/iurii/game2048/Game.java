@@ -11,7 +11,7 @@ public class Game {
         return dataBase.loadCount();
     }
 
-    //// TODO: 11.01.2016 написать тест
+    //// TODO: 11.01.2016 написать тест или тесты
     public int getCurrentScore() {
         return board.getTheAmountOfNumbersCollapsingBoards();
     }

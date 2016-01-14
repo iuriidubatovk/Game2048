@@ -16,11 +16,11 @@ import android.os.Vibrator;
 import static com.iurii.game2048.R.drawable.foto_game_2048;
 
 
-public class UsersFragment extends Fragment implements com.iurii.game2048.View {
+public class GameFragment extends Fragment implements com.iurii.game2048.View {
     private Presenter presenter;
     private Vibrator vibrator;
 
-    private NonClickableGridView gv;
+    private NonClickableGridView gv1;
     private TextView score, record;
 
     @Override
@@ -44,7 +44,7 @@ public class UsersFragment extends Fragment implements com.iurii.game2048.View {
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_with_game, null);
+        View view = inflater.inflate(R.layout.fragment_game, null);
 
         view.findViewById(R.id.root_layout).setOnTouchListener(
                 new OnSwipeTouchListener(getActivity()) {
@@ -72,7 +72,7 @@ public class UsersFragment extends Fragment implements com.iurii.game2048.View {
 
         score = (TextView) view.findViewById(R.id.score);
         record = (TextView) view.findViewById(R.id.record);
-        gv = (NonClickableGridView) view.findViewById(R.id.gridView1);
+        gv1 = (NonClickableGridView) view.findViewById(R.id.gridView);
 
         showGame();
 
@@ -115,10 +115,10 @@ public class UsersFragment extends Fragment implements com.iurii.game2048.View {
     }
 
     private void tuneGridView(Tile[] tiles) {
-        gv.setVerticalSpacing(25);
-        gv.setHorizontalSpacing(25);
-        gv.setPadding(10, 25, 10, 0);
-        gv.setAdapter(new CustomAdapter(getActivity(), tiles));
+        gv1.setVerticalSpacing(25);
+        gv1.setHorizontalSpacing(25);
+        gv1.setPadding(10, 25, 10, 0);
+        gv1.setAdapter(new TileAdapter(getActivity(), tiles));
     }
 
     private void setUpActionBar() {

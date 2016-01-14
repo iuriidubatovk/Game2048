@@ -23,5 +23,4 @@ public class NonClickableGridView extends GridView {
     public boolean onTouchEvent(MotionEvent ev) {
         return false;
     }
-
 }

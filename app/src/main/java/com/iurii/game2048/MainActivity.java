@@ -14,7 +14,7 @@ import android.widget.Toast;
 
 
 public class MainActivity extends ActionBarActivity {
-    private FragmentReload fragmentReload = new FragmentReload();
+    private Reload reload = new Reload();
     SharedPreferences sp;
     private static boolean isVibrationIncluded;
 
@@ -32,8 +32,8 @@ public class MainActivity extends ActionBarActivity {
         setContentView(R.layout.activity_main);
         sp = PreferenceManager.getDefaultSharedPreferences(this);
         setSupportActionBar((Toolbar) findViewById(R.id.toolbar));
-        //todo почитать как нужно передавать фрагмент так или может через конструктор
-        UsersFragment fragment = new UsersFragment();
+        GameFragment fragment = new GameFragment();
+
         setFragment(fragment);
 
     }
@@ -49,8 +49,9 @@ public class MainActivity extends ActionBarActivity {
         switch (item.getItemId()) {
             case R.id.action_settings:
                 getFragmentManager().beginTransaction()
-                        .replace(R.id.fragmCont, new PrefsFragment()).addToBackStack(null)
-                                .commit();
+                        .replace(R.id.fragmCont, new PrefsFragment()).
+                        addToBackStack(null)
+                        .commit();
                 return true;
 
             case R.id.action_share:
@@ -59,7 +60,10 @@ public class MainActivity extends ActionBarActivity {
 
             case R.id.action_reload:
                 FragmentManager manager = getSupportFragmentManager();
-                manager.beginTransaction().add(R.id.fragmCont, fragmentReload).addToBackStack(null).commit();
+                manager.beginTransaction().
+                        add(R.id.fragmCont, reload).
+                        addToBackStack(null).
+                        commit();
                 return true;
 
             default:
@@ -68,7 +72,7 @@ public class MainActivity extends ActionBarActivity {
         }
     }
 
-    public void setFragment(UsersFragment fragment) {
+    public void setFragment(GameFragment fragment) {
         FragmentManager fragmentManager = getSupportFragmentManager();
         fragmentManager.beginTransaction()
                 .replace(R.id.fragmCont, fragment)
@@ -108,7 +112,8 @@ public class MainActivity extends ActionBarActivity {
                 }
             });
         }
-       //// TODO: 06.01.2016 static плохо лучше передать ссылку на MainActivity и у незвать нестатический класс
+
+        //// TODO: 06.01.2016 static плохо лучше передать ссылку на MainActivity и у незвать нестатический класс
         //но тогда нужно будет везде где используеться этот метод передавать и MainActivity
         public static boolean isVibrationIncluded() {
             return isVibrationIncluded;

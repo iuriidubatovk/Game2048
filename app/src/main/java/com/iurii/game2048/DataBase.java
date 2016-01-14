@@ -39,7 +39,7 @@ public class DataBase {
     }
 
     //// TODO: 06.01.2016 подумать можно ли уменьшить базу данных например убрать повторяющийся код
-    ///// TODO: 11.01.2016 написать тесты
+    ///// TODO: 11.01.2016 написать тест
     public void saveTiles(Tile[] tiles) {
         String jsonStr = new Gson().toJson(tiles);
         SharedPreferences settings = context.getSharedPreferences(PREFS_NAME, Context.MODE_PRIVATE);
@@ -90,9 +90,9 @@ public class DataBase {
         if (currentScore > recordUser) {
             saveRecord();
             loadRecord();
-
-        } else
+        } else {
             loadRecord();
+        }
 
         return loadRecord();
     }

@@ -9,7 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 
-public class FragmentReload extends Fragment implements View.OnClickListener {
+public class Reload extends Fragment implements View.OnClickListener {
     MainActivity mainActivity;
 
     public static boolean isReloadGame() {
@@ -27,7 +27,7 @@ public class FragmentReload extends Fragment implements View.OnClickListener {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {
         //todo замеить test нормальное название
-        View view = inflater.inflate(R.layout.test, null);
+        View view = inflater.inflate(R.layout.fragment_reload, null);
         Button cancel = (Button) view.findViewById(R.id.cancel);
         Button ok = (Button) view.findViewById(R.id.ok);
         cancel.setOnClickListener(this);
@@ -40,11 +40,11 @@ public class FragmentReload extends Fragment implements View.OnClickListener {
     public void onClick(View v) {
         switch (v.getId()) {
             case R.id.cancel:
-                mainActivity.onBackPressed();
+              //  mainActivity.onBackPressed();
                 break;
             case R.id.ok:
                 mainActivity.onBackPressed();
-                mainActivity.setFragment(new UsersFragment());
+                mainActivity.setFragment(new GameFragment());
                 isNewGame = true;
                 break;
         }

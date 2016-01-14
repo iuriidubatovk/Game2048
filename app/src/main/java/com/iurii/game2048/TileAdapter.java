@@ -13,15 +13,14 @@ import android.widget.TextView;
 
 import static com.iurii.game2048.R.drawable.*;
 
-public class CustomAdapter extends BaseAdapter {
+public class TileAdapter extends BaseAdapter {
 
     Tile[] tiles;
     Context context;
 
-
     private static LayoutInflater inflater = null;
 
-    public CustomAdapter(Context context, Tile[] tiles) {
+    public TileAdapter(Context context, Tile[] tiles) {
         this.tiles = tiles;
         this.context = context;
         inflater = (LayoutInflater) context.
@@ -61,14 +60,14 @@ public class CustomAdapter extends BaseAdapter {
                 break;
             case 2:
                 if (loadAnimation) {
-                    Animation changeTransparency = AnimationUtils.loadAnimation(context, R.anim.my_alpha);
+                    Animation changeTransparency = AnimationUtils.loadAnimation(context, R.anim.alpha);
                     holder.layout.startAnimation(changeTransparency);
                 }
                 holder.layout.setBackgroundResource(val_2);
                 break;
             case 4:
                 if (loadAnimation) {
-                    Animation changeTransparency = AnimationUtils.loadAnimation(context, R.anim.my_alpha);
+                    Animation changeTransparency = AnimationUtils.loadAnimation(context, R.anim.alpha);
                     holder.layout.startAnimation(changeTransparency);
                 }
                 holder.layout.setBackgroundResource(val_4);
